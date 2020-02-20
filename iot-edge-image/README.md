@@ -19,7 +19,7 @@ multipass exec ubuntu-lts -- bash
 NOTE: you may experience problems with blocked protocols in a 3M Corporate network
 
 
-You can not run a check
+You can now run a check
 ```
 sudo iotedge check
 ```
