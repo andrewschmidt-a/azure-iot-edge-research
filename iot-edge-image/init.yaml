@@ -10,7 +10,7 @@ runcmd:
   - chown -R root:iotedge /var/run/iotedge
   - chmod 770 -R /var/run/iotedge/
   - systemctl restart iotedge.service
-  # - export CONN_STRING="HostName=iothub-ced3884d.azure-devices.net;DeviceId=andrewEdgeDocker;SharedAccessKey=y2YdjYGS2VrPYOE4ExPhIfJ8UuPimrqYFuTee3maJ8s="
+  # - export CONN_STRING="<Connection_String>"
   # - sed -i "s/<ADD DEVICE CONNECTION STRING HERE>/$CONN_STRING/g" /etc/iotedge/config.yaml
   # - chmod
   # - systemctl restart iotedge.service
