@@ -1,0 +1,38 @@
+runcmd:
+  - curl https://packages.microsoft.com/config/ubuntu/18.04/multiarch/prod.list > ./microsoft-prod.list
+  - cp ./microsoft-prod.list /etc/apt/sources.list.d/
+  - curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg
+  - cp ./microsoft.gpg /etc/apt/trusted.gpg.d/
+  - apt-get update
+  - apt-get install zfsutils-linux -y
+  - apt-get install moby-engine moby-cli -y
+  - apt-get install iotedge -y
+  - chown -R root:iotedge /var/run/iotedge
+  - chmod 770 -R /var/run/iotedge/
+  - systemctl restart iotedge.service
+  # - export CONN_STRING="HostName=iothub-ced3884d.azure-devices.net;DeviceId=andrewEdgeDocker;SharedAccessKey=y2YdjYGS2VrPYOE4ExPhIfJ8UuPimrqYFuTee3maJ8s="
+  # - sed -i "s/<ADD DEVICE CONNECTION STRING HERE>/$CONN_STRING/g" /etc/iotedge/config.yaml
+  # - chmod
+  # - systemctl restart iotedge.service
+  # - 
+
+write_files:
+  -  content: |
+       # Manual provisioning configuration
+       hostname: "ubuntu-lts"
+       provisioning:
+         source: "manual"
+         device_connection_string: "HostName=iothub-ced3884d.azure-devices.net;DeviceId=andrewEdgeDocker;SharedAccessKey=y2YdjYGS2VrPYOE4ExPhIfJ8UuPimrqYFuTee3maJ8s="
+
+       # DPS TPM provisioning configuration
+       # provisioning:
+       #   source: "dps"
+       #   global_endpoint: "https://global.azure-devices-provisioning.net"
+       #   scope_id: "{scope_id}"
+       #   attestation:
+       #     method: "tpm"
+       #   registration_id: "{registration_id}"
+     path: /etc/iotedge/config.yaml
+
+
+final_message: "The system is finally up, after $UPTIME seconds"
