@@ -10,11 +10,8 @@ runcmd:
   - chown -R root:iotedge /var/run/iotedge
   - chmod 770 -R /var/run/iotedge/
   - systemctl restart iotedge.service
-  # - export CONN_STRING="<Connection_String>"
-  # - sed -i "s/<ADD DEVICE CONNECTION STRING HERE>/$CONN_STRING/g" /etc/iotedge/config.yaml
-  # - chmod
-  # - systemctl restart iotedge.service
-  # - 
+  - /etc/iotedge/configedge.sh "<Connection_String>"
+  - systemctl restart iotedge.service 
 
 write_files:
   -  content: |
