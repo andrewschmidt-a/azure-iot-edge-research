@@ -1,4 +1,17 @@
-# Pre-requisites
+
+
+# Getting started (Azure)
+## Pre-requisites
+- Azure CLI
+
+```bash 
+az vm create --resource-group {{rg}} --name {{name}} --imagemicrosoft_iot_edge:iot_edge_vm_ubuntu:ubuntu_1604_edgeruntimeonly:latest --admin-username azureuser --generate-ssh-keys
+
+az vm run-command invoke -g {{rg}} -n {{name}} --command-idRunShellScript --script"/etc/iotedge/configedge.sh 'device_connection_string'"
+```
+
+# Getting started (Multi-pass)
+## Pre-requisites
 - Mutli-pass
 - Virtualbox
 
@@ -7,8 +20,6 @@ brew cask install multipass
 brew cask install virtualbox
 sudo multipass set local.driver=virtualbox
 ```
-
-# Getting started
 Edit the init.yaml file to contain a connection string from IoT Hub
 
 ```bash
@@ -18,6 +29,8 @@ multipass exec ubuntu-lts -- bash
 
 NOTE: you may experience problems with blocked protocols in a 3M Corporate network
 
+
+# First Steps
 
 You can now run a check
 ```
