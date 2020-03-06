@@ -7,7 +7,7 @@
 ```bash 
 az vm create --resource-group {{rg}} --name {{name}} --imagemicrosoft_iot_edge:iot_edge_vm_ubuntu:ubuntu_1604_edgeruntimeonly:latest --admin-username azureuser --generate-ssh-keys
 
-az vm run-command invoke -g {{rg}} -n {{name}} --command-idRunShellScript --script"/etc/iotedge/configedge.sh 'device_connection_string'"
+az vm run-command invoke -g {{rg}} -n {{name}} --command-idRunShellScript --script"/etc/iotedge/configedge.sh '{{device_connection_string}}'"
 ```
 
 # Getting started (Multi-pass)
